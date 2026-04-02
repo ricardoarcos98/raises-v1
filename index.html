@@ -8,8 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <style>
 /* ============================================
    CSS VARIABLES & RESET
@@ -1345,38 +1343,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 600;
 }
 
-.campaign-slide__progress {
-  margin-bottom: 1.75rem;
-}
-
-.campaign-slide__progress-header {
+.campaign-slide__urgency {
   display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(184, 92, 56, 0.08);
+  border: 1px solid rgba(184, 92, 56, 0.18);
+  border-radius: 12px;
 }
 
-.campaign-slide__progress-label {
-  color: #888;
+.campaign-slide__urgency-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  flex-shrink: 0;
+  animation: urgencyPulse 1.5s ease-in-out infinite;
 }
 
-.campaign-slide__progress-value {
+@keyframes urgencyPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.campaign-slide__urgency-text {
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--terracotta);
-  font-weight: 700;
+  line-height: 1.3;
 }
 
-.campaign-slide__progress-bar {
-  height: 8px;
-  border-radius: 50px;
-  background: var(--cream-dark);
-  overflow: hidden;
-}
-
-.campaign-slide__progress-fill {
-  height: 100%;
-  border-radius: 50px;
-  background: linear-gradient(90deg, var(--green-forest), var(--green-moss));
-  transition: width 1.2s ease;
+.campaign-slide__urgency-text span {
+  font-weight: 400;
+  color: #777;
 }
 
 .campaign-slide__cta {
@@ -1794,24 +1795,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                 <span class="campaign-slide__meta-label">Escuela</span>
               </div>
             </div>
-            <div class="campaign-slide__progress">
-              <div class="campaign-slide__progress-header">
-                <span class="campaign-slide__progress-label">Progreso de Remo</span>
-                <span class="campaign-slide__progress-value" id="remo-progress-text">0 / 50</span>
-              </div>
-              <div class="campaign-slide__progress-bar">
-                <div class="campaign-slide__progress-fill" id="remo-progress-fill" style="width: 0%;"></div>
+            <div class="campaign-slide__urgency">
+              <div class="campaign-slide__urgency-dot"></div>
+              <div class="campaign-slide__urgency-text">
+                Últimas unidades disponibles <span>— Edición limitada</span>
               </div>
             </div>
-            <div id="bold-button-container">
-              <script
-                id="bold-pay-btn"
-                data-bold-button="dark-L"
-                data-api-key="DMbs_SyFlEoxll_OJkjYmft6y3DkFGdgtmd5M3DXaSk"
-                data-description="Mug Remo 1 Corriente Cordobesa"
-                src="https://checkout.bold.co/library/boldPaymentButton.js"
-              ></script>
-            </div>
+            <a href="https://ricardoarcos.gumroad.com/l/100RaicesCordobesa" target="_blank" rel="noopener noreferrer" class="campaign-slide__cta">
+              Donar a Remo
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l10-7.5L5 0"/></svg>
+            </a>
           </div>
         </div>
 
@@ -2276,76 +2269,6 @@ if (gallery && prevBtn && nextBtn) {
     }, 3500);
   });
 }
-</script>
-
-<!-- ============================================
-     BOLD PAYMENT + FIREBASE COUNTER
-     ============================================ -->
-<script>
-(function () {
-  var BOLD_SECRET = 'GtMA3fd2Cd1CA3bEdDiBVw';
-  var AMOUNT      = 60000;
-  var CURRENCY    = 'COP';
-  var GOAL        = 50;
-
-  var FIREBASE_CONFIG = {
-    apiKey: 'AIzaSyAYtcanaPC1swjF5Sk5rSOn1r105_xarSs',
-    authDomain: 'remo-a36e0.firebaseapp.com',
-    databaseURL: 'https://remo-a36e0-default-rtdb.firebaseio.com',
-    projectId: 'remo-a36e0'
-  };
-
-  /* ── FIREBASE ── */
-  var soldRef = null;
-  try {
-    firebase.initializeApp(FIREBASE_CONFIG);
-    soldRef = firebase.database().ref('remo/campaigns/remo1/sold');
-  } catch (e) { /* Firebase error */ }
-
-  /* ── PROGRESS BAR ── */
-  var progressText = document.getElementById('remo-progress-text');
-  var progressFill = document.getElementById('remo-progress-fill');
-
-  function updateProgress(sold) {
-    var clamped = Math.min(sold, GOAL);
-    var pct = (clamped / GOAL) * 100;
-    if (progressText) progressText.textContent = clamped + ' / ' + GOAL;
-    if (progressFill) progressFill.style.width = pct + '%';
-  }
-
-  if (soldRef) {
-    soldRef.on('value', function (snap) {
-      updateProgress(snap.val() || 0);
-    });
-  }
-
-  /* ── HANDLE RETURN FROM BOLD ── */
-  var params = new URLSearchParams(window.location.search);
-  var txStatus = params.get('bold-tx-status');
-
-  if (txStatus === 'approved' && soldRef) {
-    var returnOrderId = params.get('bold-order-id');
-    var processedKey = 'remo_processed_' + returnOrderId;
-    if (!sessionStorage.getItem(processedKey)) {
-      sessionStorage.setItem(processedKey, '1');
-      soldRef.transaction(function (current) {
-        return (current || 0) + 1;
-      });
-    }
-    history.replaceState(null, '', window.location.pathname);
-  }
-
-  /* ── BOLD: hash + SDK (desactivado hasta verificar llaves) ── */
-  /*
-  async function sha256(message) {
-    var encoded = new TextEncoder().encode(message);
-    var buffer = await crypto.subtle.digest('SHA-256', encoded);
-    return Array.from(new Uint8Array(buffer))
-      .map(function (b) { return b.toString(16).padStart(2, '0'); })
-      .join('');
-  }
-  */
-})();
 </script>
 
 </body>
