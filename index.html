@@ -1803,15 +1803,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                 <div class="campaign-slide__progress-fill" id="remo-progress-fill" style="width: 0%;"></div>
               </div>
             </div>
-            <script
-              id="bold-pay-btn"
-              data-bold-button="dark-L"
-              data-api-key="DMbs_SyFlEoxll_OJkjYmft6y3DkFGdgtmd5M3DXaSk"
-              data-amount="60000"
-              data-currency="COP"
-              data-description="Mug Remo #1: Corriente Cordobesa"
-              data-render-mode="embedded"
-            ></script>
+            <div id="bold-button-container">
+              <script
+                id="bold-pay-btn"
+                data-bold-button="dark-L"
+                data-api-key="DMbs_SyFlEoxll_OJkjYmft6y3DkFGdgtmd5M3DXaSk"
+                data-description="Mug Remo 1 Corriente Cordobesa"
+                src="https://checkout.bold.co/library/boldPaymentButton.js"
+              ></script>
+            </div>
           </div>
         </div>
 
@@ -2335,7 +2335,8 @@ if (gallery && prevBtn && nextBtn) {
     history.replaceState(null, '', window.location.pathname);
   }
 
-  /* ── BOLD: set dynamic attrs then load SDK ── */
+  /* ── BOLD: hash + SDK (desactivado hasta verificar llaves) ── */
+  /*
   async function sha256(message) {
     var encoded = new TextEncoder().encode(message);
     var buffer = await crypto.subtle.digest('SHA-256', encoded);
@@ -2343,22 +2344,7 @@ if (gallery && prevBtn && nextBtn) {
       .map(function (b) { return b.toString(16).padStart(2, '0'); })
       .join('');
   }
-
-  var btn = document.getElementById('bold-pay-btn');
-  if (btn) {
-    var orderId = 'REMO1-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6);
-    var redirectUrl = window.location.origin + window.location.pathname;
-
-    sha256(orderId + AMOUNT + CURRENCY + BOLD_SECRET).then(function (hash) {
-      btn.setAttribute('data-order-id', orderId);
-      btn.setAttribute('data-integrity-signature', hash);
-      btn.setAttribute('data-redirection-url', redirectUrl);
-
-      var sdk = document.createElement('script');
-      sdk.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
-      document.head.appendChild(sdk);
-    });
-  }
+  */
 })();
 </script>
 
