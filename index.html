@@ -481,173 +481,65 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================ */
 .about {
   padding: var(--section-pad) 0;
-  background: var(--white-warm);
-  position: relative;
-}
-
-.about__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about__visual {
-  position: relative;
-}
-
-.about__image-frame {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  aspect-ratio: 4/5;
-  background: linear-gradient(135deg, var(--cream-dark) 0%, var(--terracotta-soft) 100%);
-}
-
-.about__image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  color: var(--brown-warm);
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.about__image-placeholder svg {
-  width: 64px;
-  height: 64px;
-  opacity: 0.4;
-}
-
-.about__accent-shape {
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid var(--terracotta-soft);
-  opacity: 0.3;
-  z-index: -1;
-}
-
-.about__text .section-tag {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--terracotta);
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.about__text h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem);
-  line-height: 1.15;
-  color: var(--charcoal);
-  margin-bottom: 1.5rem;
-}
-
-.about__text h2 em {
-  font-style: italic;
-  color: var(--terracotta);
-}
-
-.about__text p {
-  color: #555;
-  margin-bottom: 1.25rem;
-}
-
-.about__values {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-top: 2rem;
-  text-align: left;
-}
-
-.value-card {
-  padding: 1.25rem;
-  background: var(--cream);
-  border-radius: 14px;
-  border-left: 3px solid var(--terracotta-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.value-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px var(--shadow-warm);
-}
-
-.value-card__icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.value-card__title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  margin-bottom: 0.3rem;
-  color: var(--charcoal);
-}
-
-.value-card__desc {
-  font-size: 0.85rem;
-  color: #777;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .about__grid {
-    grid-template-columns: 1fr;
-  }
-  .about__visual {
-    order: -1;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .about__values {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ============================================
-   METHODOLOGY / MÉTODO REMO
-   ============================================ */
-.methodology {
-  padding: var(--section-pad) 0;
   background: var(--charcoal);
   color: var(--cream);
   position: relative;
   overflow: hidden;
 }
 
-.methodology::before {
+.about::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 0%, rgba(184, 92, 56, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(59, 94, 58, 0.1) 0%, transparent 60%);
+    radial-gradient(ellipse at 10% 20%, rgba(184, 92, 56, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(59, 94, 58, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 
-.methodology__header {
+.about__float {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.about__float--1 {
+  width: 260px; height: 260px;
+  top: -60px; left: -80px;
+  background: var(--terracotta);
+  animation: aboutFloat 18s ease-in-out infinite;
+}
+
+.about__float--2 {
+  width: 180px; height: 180px;
+  bottom: -40px; right: -50px;
+  background: var(--green-forest);
+  animation: aboutFloat 22s ease-in-out infinite reverse;
+}
+
+.about__float--3 {
+  width: 100px; height: 100px;
+  top: 40%; right: 8%;
+  border: 2px solid var(--terracotta-soft);
+  background: transparent;
+  animation: aboutFloat 15s ease-in-out infinite 3s;
+}
+
+@keyframes aboutFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -15px) scale(1.05); }
+  66% { transform: translate(-10px, 12px) scale(0.97); }
+}
+
+.about__header {
   text-align: center;
   max-width: 700px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 3.5rem;
   position: relative;
 }
 
-.methodology__header .section-tag {
+.about__header .section-tag {
   display: inline-block;
   font-size: 0.78rem;
   font-weight: 600;
@@ -657,7 +549,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 1rem;
 }
 
-.methodology__header h2 {
+.about__header h2 {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw + 0.5rem, 3.5rem);
   line-height: 1.1;
@@ -665,14 +557,206 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 1.25rem;
 }
 
-.methodology__header h2 em {
+.about__header h2 em {
   font-style: italic;
   color: var(--terracotta-soft);
+  position: relative;
+}
+
+.about__header h2 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--terracotta-soft);
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
+}
+
+.about__header.visible h2 em::after {
+  width: 100%;
+}
+
+.about__header p {
+  color: rgba(250, 243, 232, 0.65);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* --- Bento Grid --- */
+.about__bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.bento-card {
+  background: rgba(250, 243, 232, 0.04);
+  border: 1px solid rgba(250, 243, 232, 0.08);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(250, 243, 232, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(184, 92, 56, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bento-card:hover::before { opacity: 1; }
+
+.bento-card--wide { grid-column: span 2; }
+
+.bento-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.bento-card:nth-child(1) .bento-card__icon { background: rgba(184, 92, 56, 0.15); }
+.bento-card:nth-child(2) .bento-card__icon { background: rgba(59, 94, 58, 0.15); }
+.bento-card:nth-child(3) .bento-card__icon { background: rgba(107, 66, 38, 0.15); }
+.bento-card:nth-child(4) .bento-card__icon { background: rgba(212, 132, 90, 0.15); }
+
+.bento-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.bento-card__desc {
+  font-size: 0.88rem;
+  color: rgba(250, 243, 232, 0.55);
+  line-height: 1.65;
+}
+
+/* Reveal from different directions */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* --- Mission statement bar --- */
+.about__mission {
+  margin-top: 3rem;
+  text-align: center;
+  position: relative;
+}
+
+.about__mission p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: rgba(250, 243, 232, 0.75);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.about__mission em {
+  color: var(--terracotta-soft);
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .about__bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-card--wide { grid-column: span 1; }
+}
+
+@media (max-width: 540px) {
+  .about__bento {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   METHODOLOGY / MÉTODO REMO
+   ============================================ */
+.methodology {
+  padding: var(--section-pad) 0;
+  background: var(--white-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+.methodology__header {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 2.5rem;
+  position: relative;
+}
+
+.methodology__header .section-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 1rem;
+}
+
+.methodology__header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem);
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 1rem;
+}
+
+.methodology__header h2 em {
+  font-style: italic;
+  color: var(--terracotta);
 }
 
 .methodology__header p {
-  color: rgba(250, 243, 232, 0.7);
-  font-size: 1.1rem;
+  color: #666;
+  font-size: 1.05rem;
   line-height: 1.7;
 }
 
@@ -680,15 +764,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(184, 92, 56, 0.15);
-  border: 1px solid rgba(184, 92, 56, 0.25);
+  background: rgba(184, 92, 56, 0.08);
+  border: 1px solid rgba(184, 92, 56, 0.18);
   border-radius: 50px;
-  padding: 0.5rem 1.25rem;
-  font-size: 0.82rem;
+  padding: 0.45rem 1.15rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--terracotta-soft);
-  margin-top: 1.5rem;
-  margin-bottom: 2.5rem;
+  color: var(--terracotta);
+  margin-top: 1.25rem;
+  margin-bottom: 0;
 }
 
 .methodology__badge svg {
@@ -696,49 +780,50 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 16px;
 }
 
-/* --- Steps timeline --- */
+/* --- Horizontal 4-step flow --- */
 .remo-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   position: relative;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .remo-steps::before {
   content: '';
   position: absolute;
-  left: 32px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--terracotta), var(--green-forest), var(--terracotta-soft));
-  opacity: 0.3;
+  top: 30px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(to right, var(--terracotta), var(--green-forest), var(--terracotta-soft), var(--green-moss));
+  opacity: 0.2;
+  z-index: 0;
 }
 
 .remo-step {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-  padding-bottom: 3rem;
+  text-align: center;
   position: relative;
-}
-
-.remo-step:last-child {
-  padding-bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5rem;
 }
 
 .remo-step__marker {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -749,120 +834,76 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .remo-step:nth-child(1) .remo-step__marker {
   background: var(--terracotta);
   color: var(--cream);
-  box-shadow: 0 0 30px rgba(184, 92, 56, 0.4);
+  box-shadow: 0 4px 20px rgba(184, 92, 56, 0.3);
 }
 
 .remo-step:nth-child(2) .remo-step__marker {
   background: var(--green-forest);
   color: var(--cream);
-  box-shadow: 0 0 30px rgba(59, 94, 58, 0.4);
+  box-shadow: 0 4px 20px rgba(59, 94, 58, 0.3);
 }
 
 .remo-step:nth-child(3) .remo-step__marker {
-  background: var(--brown-warm);
+  background: var(--terracotta-soft);
   color: var(--cream);
-  box-shadow: 0 0 30px rgba(107, 66, 38, 0.4);
+  box-shadow: 0 4px 20px rgba(212, 132, 90, 0.3);
 }
 
 .remo-step:nth-child(4) .remo-step__marker {
-  background: var(--terracotta-soft);
-  color: var(--cream);
-  box-shadow: 0 0 30px rgba(212, 132, 90, 0.4);
-}
-
-.remo-step:nth-child(5) .remo-step__marker {
   background: var(--green-moss);
   color: var(--cream);
-  box-shadow: 0 0 30px rgba(90, 127, 89, 0.4);
-}
-
-.remo-step:nth-child(6) .remo-step__marker {
-  background: var(--terracotta);
-  color: var(--cream);
-  box-shadow: 0 0 30px rgba(184, 92, 56, 0.4);
-}
-
-.remo-step:nth-child(7) .remo-step__marker {
-  background: var(--green-forest);
-  color: var(--cream);
-  box-shadow: 0 0 30px rgba(59, 94, 58, 0.4);
-}
-
-.remo-step__content {
-  background: rgba(250, 243, 232, 0.04);
-  border: 1px solid rgba(250, 243, 232, 0.08);
-  border-radius: 16px;
-  padding: 1.75rem 2rem;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-.remo-step:hover .remo-step__content {
-  background: rgba(250, 243, 232, 0.07);
-  border-color: rgba(250, 243, 232, 0.15);
+  box-shadow: 0 4px 20px rgba(90, 127, 89, 0.3);
 }
 
 .remo-step__title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
-  color: var(--cream);
+  font-size: 1.1rem;
+  color: var(--charcoal);
   margin-bottom: 0.5rem;
+  line-height: 1.25;
 }
 
 .remo-step__desc {
-  font-size: 0.92rem;
-  color: rgba(250, 243, 232, 0.65);
-  line-height: 1.7;
-}
-
-.remo-step__highlight {
-  margin-top: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: rgba(184, 92, 56, 0.1);
-  border-left: 3px solid var(--terracotta-soft);
-  border-radius: 0 10px 10px 0;
-  font-size: 0.85rem;
-  color: var(--terracotta-soft);
-  font-weight: 500;
+  font-size: 0.88rem;
+  color: #777;
   line-height: 1.6;
+  max-width: 220px;
 }
 
 /* --- Bottom message --- */
 .methodology__bottom {
   text-align: center;
   max-width: 600px;
-  margin: 3.5rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(250, 243, 232, 0.08);
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .methodology__bottom p {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: rgba(250, 243, 232, 0.8);
+  font-size: 1.1rem;
+  color: #888;
   font-style: italic;
   line-height: 1.5;
 }
 
 .methodology__bottom em {
-  color: var(--terracotta-soft);
+  color: var(--terracotta);
   font-style: italic;
 }
 
 @media (max-width: 768px) {
-  .remo-steps::before {
-    left: 24px;
+  .remo-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 1.5rem;
   }
-  .remo-step {
-    grid-template-columns: 48px 1fr;
-    gap: 1rem;
-  }
-  .remo-step__marker {
-    width: 48px;
-    height: 48px;
-    font-size: 1rem;
-  }
-  .remo-step__content {
-    padding: 1.25rem 1.5rem;
+  .remo-steps::before { display: none; }
+}
+
+@media (max-width: 440px) {
+  .remo-steps {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
@@ -1823,46 +1864,48 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 <!-- ============ ABOUT ============ -->
 <section class="about" id="sobre">
+  <div class="about__float about__float--1"></div>
+  <div class="about__float about__float--2"></div>
+  <div class="about__float about__float--3"></div>
+
   <div class="container">
-    <div class="about__grid">
-      <div class="about__text">
-        <span class="section-tag reveal">Quiénes somos</span>
-        <h2 class="reveal reveal-delay-1">
-          Nacimos de la convicción de que el <em>cambio es posible</em>
-        </h2>
-        <p class="reveal reveal-delay-2">
-          Fundación Remo es una organización colombiana sin ánimo de lucro que trabaja
-          directamente con comunidades afectadas por la desigualdad, el desplazamiento y la
-          falta de oportunidades. Desde 2018, hemos llegado a regiones donde la presencia
-          institucional es escasa y la necesidad es urgente.
-        </p>
-        <p class="reveal reveal-delay-2">
-          Nuestra visión es un país donde cada comunidad tenga las herramientas, el
-          acompañamiento y la dignidad que merece para construir su propio futuro.
-        </p>
-        <div class="about__values reveal reveal-delay-3">
-          <div class="value-card">
-            <div class="value-card__icon">🤝</div>
-            <div class="value-card__title">Solidaridad</div>
-            <div class="value-card__desc">Trabajamos junto a las comunidades, nunca por encima de ellas.</div>
-          </div>
-          <div class="value-card">
-            <div class="value-card__icon">🌱</div>
-            <div class="value-card__title">Sostenibilidad</div>
-            <div class="value-card__desc">Generamos capacidades locales que permanecen en el tiempo.</div>
-          </div>
-          <div class="value-card">
-            <div class="value-card__icon">🔍</div>
-            <div class="value-card__title">Transparencia</div>
-            <div class="value-card__desc">Cada recurso invertido es trazable y rendido públicamente.</div>
-          </div>
-          <div class="value-card">
-            <div class="value-card__icon">💬</div>
-            <div class="value-card__title">Escucha activa</div>
-            <div class="value-card__desc">Las comunidades definen sus prioridades; nosotros facilitamos.</div>
-          </div>
-        </div>
+    <div class="about__header reveal">
+      <span class="section-tag">Quiénes somos</span>
+      <h2>
+        Nacimos de la convicción de que el <em>cambio es posible</em>
+      </h2>
+      <p>
+        Fundación Remo es una organización colombiana sin ánimo de lucro que trabaja
+        directamente con comunidades donde la necesidad es urgente y la presencia
+        institucional es escasa.
+      </p>
+    </div>
+
+    <div class="about__bento">
+      <div class="bento-card bento-card--wide reveal-left" style="transition-delay: 0.1s;">
+        <div class="bento-card__icon">🤝</div>
+        <div class="bento-card__title">Solidaridad</div>
+        <div class="bento-card__desc">Trabajamos junto a las comunidades, nunca por encima de ellas. Cada proyecto nace de la escucha real.</div>
       </div>
+      <div class="bento-card bento-card--wide reveal-right" style="transition-delay: 0.2s;">
+        <div class="bento-card__icon">🌱</div>
+        <div class="bento-card__title">Sostenibilidad</div>
+        <div class="bento-card__desc">Generamos capacidades locales que permanecen en el tiempo, mucho después de que el remo termine.</div>
+      </div>
+      <div class="bento-card bento-card--wide reveal-scale" style="transition-delay: 0.3s;">
+        <div class="bento-card__icon">🔍</div>
+        <div class="bento-card__title">Transparencia</div>
+        <div class="bento-card__desc">Cada peso donado es trazable. Datos reales, certificados verificables, rendición pública.</div>
+      </div>
+      <div class="bento-card bento-card--wide reveal-scale" style="transition-delay: 0.4s;">
+        <div class="bento-card__icon">💬</div>
+        <div class="bento-card__title">Escucha activa</div>
+        <div class="bento-card__desc">Las comunidades definen sus prioridades. Nosotros facilitamos, acompañamos y remamos junto a ellas.</div>
+      </div>
+    </div>
+
+    <div class="about__mission reveal" style="transition-delay: 0.5s;">
+      <p>Nuestra visión: un país donde cada comunidad tenga las herramientas y la <em>dignidad que merece</em> para construir su propio futuro.</p>
     </div>
   </div>
 </section>
@@ -1872,10 +1915,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <div class="container">
     <div class="methodology__header">
       <span class="section-tag reveal">Método Remo</span>
-      <h2 class="reveal reveal-delay-1">Un método <em>innovador</em> para cambiar realidades</h2>
+      <h2 class="reveal reveal-delay-1">Así funciona <em>Remo</em></h2>
       <p class="reveal reveal-delay-2">
-        Remo combina tecnología, comunidad y transparencia en un proceso único.
-        Cada remo es un viaje colectivo donde nadie rema solo.
+        Tecnología, comunidad y transparencia en 4 pasos. Sin burocracia, con impacto real.
       </p>
       <div class="methodology__badge reveal reveal-delay-2">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -1885,114 +1927,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     <div class="remo-steps">
 
-      <div class="remo-step reveal">
+      <div class="remo-step reveal" style="transition-delay: 0.1s;">
         <div class="remo-step__marker">1</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Postulá tu Remo</h3>
-          <p class="remo-step__desc">
-            Todo comienza con un formulario y un video donde nos contás tu causa.
-            Queremos conocer cada detalle: quién sos, qué comunidad necesita ayuda
-            y cómo imaginás el cambio. Ningún detalle se pierde.
-          </p>
-        </div>
+        <h3 class="remo-step__title">Postulá tu Remo</h3>
+        <p class="remo-step__desc">Completás un formulario y un video contándonos tu causa. No se pierde ningún detalle.</p>
       </div>
 
-      <div class="remo-step reveal">
+      <div class="remo-step reveal" style="transition-delay: 0.2s;">
         <div class="remo-step__marker">2</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Remo analiza tu causa</h3>
-          <p class="remo-step__desc">
-            Nuestra IA Remo procesa tu postulación sin sesgos, con total transparencia
-            y evitando cualquier problema antes de que ocurra. Evalúa la viabilidad,
-            verifica que todo esté en orden y genera una preaprobación con pautas claras
-            para acompañarte en la misión.
-          </p>
-          <div class="remo-step__highlight">
-            Sin sesgos. Transparente. Inteligente. Remo es el filtro que garantiza
-            que cada remo tenga impacto real.
-          </div>
-        </div>
+        <h3 class="remo-step__title">IA analiza y aprueba</h3>
+        <p class="remo-step__desc">Remo evalúa sin sesgos, te da preaprobación y te recibimos con una llamada de bienvenida.</p>
       </div>
 
-      <div class="remo-step reveal">
+      <div class="remo-step reveal" style="transition-delay: 0.3s;">
         <div class="remo-step__marker">3</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Bienvenido a la tripulación</h3>
-          <p class="remo-step__desc">
-            Una vez preaprobado, tendremos una llamada de 10 minutos donde te
-            contamos todo sobre Proyecto Remo. Si tu causa es aprobada, recibís
-            un correo o mensaje de bienvenida a la Comunidad Remo. Si no, te damos
-            feedback claro y honesto para que puedas mejorar tu postulación.
-          </p>
-        </div>
+        <h3 class="remo-step__title">Tu Remo al aire</h3>
+        <p class="remo-step__desc">Te guiamos a montar tu campaña con IA y alianzas estratégicas. Remamos hasta cumplir la meta.</p>
       </div>
 
-      <div class="remo-step reveal">
+      <div class="remo-step reveal" style="transition-delay: 0.4s;">
         <div class="remo-step__marker">4</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Onboarding: montá tu Remo</h3>
-          <p class="remo-step__desc">
-            Te guiamos paso a paso para que tu remo brille. Te enseñamos a
-            comunicar, a elegir productos y a conectar con tu audiencia. Pero
-            acá viene el diferencial: tu remo va a estar potenciado con IA
-            y respaldado por alianzas estratégicas que nos permiten llevarlo
-            a otro nivel.
-          </p>
-          <div class="remo-step__highlight">
-            IA + alianzas estratégicas = tu remo no solo sale al aire, despega.
-          </div>
-        </div>
-      </div>
-
-      <div class="remo-step reveal">
-        <div class="remo-step__marker">5</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Remo al aire</h3>
-          <p class="remo-step__desc">
-            Tu remo sale a navegar con un tiempo límite y productos solidarios.
-            Cada persona que dona y elige un producto se convierte en parte de la
-            tripulación — ayuda a comunicar, a remar en conjunto y a hacer que
-            el remo sea un éxito.
-          </p>
-          <div class="remo-step__highlight">
-            Donar + comunicar = remar juntos. Si no se cumple la meta en el tiempo
-            establecido, la donación se entrega igual y los productos se quedan
-            con la comunidad. Nadie pierde, todos ganan.
-          </div>
-        </div>
-      </div>
-
-      <div class="remo-step reveal">
-        <div class="remo-step__marker">6</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Impacto garantizado</h3>
-          <p class="remo-step__desc">
-            Ofrecemos los remos necesarios hasta encontrar a los remadores
-            indicados — personas que se suman, comunican y ayudan a que el
-            remo se cumpla. Cada donante recibe su producto y los recursos
-            llegan a la comunidad. Con Remo, no paramos hasta que el impacto
-            sea real.
-          </p>
-          <div class="remo-step__highlight">
-            No es una sola oportunidad. Remamos las veces que haga falta hasta cumplir la meta.
-          </div>
-        </div>
-      </div>
-
-      <div class="remo-step reveal">
-        <div class="remo-step__marker">7</div>
-        <div class="remo-step__content">
-          <h3 class="remo-step__title">Datos e impacto real</h3>
-          <p class="remo-step__desc">
-            Cada remo finaliza con certificados reales de impacto, métricas
-            verificables y datos transparentes. Todo construido por nuestros
-            mejores ingenieros para que cada peso donado sea trazable y cada
-            resultado, comprobable.
-          </p>
-          <div class="remo-step__highlight">
-            Certificados reales. Datos verificables. Ingeniería al servicio del impacto social.
-          </div>
-        </div>
+        <h3 class="remo-step__title">Impacto verificable</h3>
+        <p class="remo-step__desc">Certificados reales, métricas transparentes. Cada peso donado es trazable y comprobable.</p>
       </div>
 
     </div>
@@ -2202,7 +2158,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   rootMargin: '0px 0px -40px 0px'
 });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => revealObserver.observe(el));
 
 /* ============================================
    ANIMATED COUNTERS
