@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<script src="https://checkout.bold.co/library/boldPaymentButton.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <style>
 /* ============================================
    CSS VARIABLES & RESET
@@ -1795,16 +1798,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             <div class="campaign-slide__progress">
               <div class="campaign-slide__progress-header">
                 <span class="campaign-slide__progress-label">Progreso de Remo</span>
-                <span class="campaign-slide__progress-value">0 / 50</span>
+                <span class="campaign-slide__progress-value" id="remo-progress-text">0 / 50</span>
               </div>
               <div class="campaign-slide__progress-bar">
-                <div class="campaign-slide__progress-fill" style="width: 0%;"></div>
+                <div class="campaign-slide__progress-fill" id="remo-progress-fill" style="width: 0%;"></div>
               </div>
             </div>
-            <a href="https://ricardoarcos.gumroad.com/l/100RaicesCordobesa" target="_blank" rel="noopener noreferrer" class="campaign-slide__cta">
-              Donar a Remo
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l10-7.5L5 0"/></svg>
-            </a>
+            <div id="bold-button-container"></div>
           </div>
         </div>
 
@@ -2269,6 +2269,117 @@ if (gallery && prevBtn && nextBtn) {
     }, 3500);
   });
 }
+</script>
+
+<!-- ============================================
+     BOLD PAYMENT + FIREBASE COUNTER
+     ============================================ -->
+<script>
+(function () {
+  /* ── CONFIG ── */
+  const BOLD_API_KEY  = 'DMbs_SyFlEoxll_OJkjYmft6y3DkFGdgtmd5M3DXaSk';
+  const BOLD_SECRET   = 'GtMA3fd2Cd1CA3bEdDiBVw';
+  const AMOUNT        = 60000;
+  const CURRENCY      = 'COP';
+  const GOAL          = 50;
+  const DESCRIPTION   = 'Mug Remo #1: Corriente Cordobesa';
+  const REDIRECT_URL  = window.location.origin + window.location.pathname;
+
+  const FIREBASE_CONFIG = {
+    apiKey: 'AIzaSyAYtcanaPC1swjF5Sk5rSOn1r105_xarSs',
+    authDomain: 'remo-a36e0.firebaseapp.com',
+    databaseURL: 'https://remo-a36e0-default-rtdb.firebaseio.com',
+    projectId: 'remo-a36e0'
+  };
+
+  /* ── FIREBASE INIT ── */
+  let db = null;
+  let soldRef = null;
+  try {
+    if (FIREBASE_CONFIG.databaseURL !== 'https://TU_PROYECTO-default-rtdb.firebaseio.com') {
+      firebase.initializeApp(FIREBASE_CONFIG);
+      db = firebase.database();
+      soldRef = db.ref('remo/campaigns/remo1/sold');
+    }
+  } catch (e) { /* Firebase not configured yet */ }
+
+  /* ── PROGRESS BAR ── */
+  const progressText = document.getElementById('remo-progress-text');
+  const progressFill = document.getElementById('remo-progress-fill');
+
+  function updateProgress(sold) {
+    const clamped = Math.min(sold, GOAL);
+    const pct = (clamped / GOAL) * 100;
+    if (progressText) progressText.textContent = clamped + ' / ' + GOAL;
+    if (progressFill) progressFill.style.width = pct + '%';
+  }
+
+  if (soldRef) {
+    soldRef.on('value', function (snap) {
+      updateProgress(snap.val() || 0);
+    });
+  }
+
+  /* ── BOLD: INTEGRITY HASH ── */
+  async function sha256(message) {
+    var encoded = new TextEncoder().encode(message);
+    var buffer = await crypto.subtle.digest('SHA-256', encoded);
+    return Array.from(new Uint8Array(buffer))
+      .map(function (b) { return b.toString(16).padStart(2, '0'); })
+      .join('');
+  }
+
+  function generateOrderId() {
+    return 'REMO1-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6);
+  }
+
+  async function injectBoldButton() {
+    var container = document.getElementById('bold-button-container');
+    if (!container) return;
+
+    var orderId = generateOrderId();
+    var raw = orderId + AMOUNT + CURRENCY + BOLD_SECRET;
+    var hash = await sha256(raw);
+
+    var script = document.createElement('script');
+    script.setAttribute('data-bold-button', 'dark-L');
+    script.setAttribute('data-api-key', BOLD_API_KEY);
+    script.setAttribute('data-order-id', orderId);
+    script.setAttribute('data-amount', String(AMOUNT));
+    script.setAttribute('data-currency', CURRENCY);
+    script.setAttribute('data-integrity-signature', hash);
+    script.setAttribute('data-description', DESCRIPTION);
+    script.setAttribute('data-redirection-url', REDIRECT_URL);
+    script.setAttribute('data-render-mode', 'embedded');
+    script.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
+
+    container.appendChild(script);
+  }
+
+  /* ── HANDLE RETURN FROM BOLD ── */
+  function handleBoldReturn() {
+    var params = new URLSearchParams(window.location.search);
+    var txStatus = params.get('bold-tx-status');
+
+    if (txStatus === 'approved' && soldRef) {
+      var returnOrderId = params.get('bold-order-id');
+      var processedKey = 'remo_processed_' + returnOrderId;
+
+      if (!sessionStorage.getItem(processedKey)) {
+        sessionStorage.setItem(processedKey, '1');
+        soldRef.transaction(function (current) {
+          return (current || 0) + 1;
+        });
+      }
+
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }
+
+  /* ── INIT ── */
+  handleBoldReturn();
+  injectBoldButton();
+})();
 </script>
 
 </body>
