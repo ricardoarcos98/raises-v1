@@ -31,7 +31,7 @@ Secciones comentadas en el HTML: impacto (stats), encuesta Typeform (se pueden r
 
 **GitHub Pages no “elige” una imagen automática** para la miniatura: hace falta **meta etiquetas Open Graph** (`og:image`, etc.) en el `<head>` con **URL absoluta** (https://…/img/remo.png).
 
-En `index.html` ya están configuradas apuntando a `img/remo.png` y a la URL del repo publicado: `https://ricardoarcos98.github.io/raises-v1/`. Si cambias el **nombre del repo**, el **usuario** o usas **dominio propio**, actualiza en el HTML las URLs de `og:url`, `og:image`, `twitter:image` y `link rel="canonical"`.
+En `index.html` ya están configuradas apuntando a `img/remo.png` y a la URL de GitHub Pages del repo [**Remo**](https://github.com/ricardoarcos98/Remo): `https://ricardoarcos98.github.io/Remo/`. Si cambias el **nombre del repo**, el **usuario** o usas **dominio propio**, actualiza en el HTML las URLs de `og:url`, `og:image`, `twitter:image` y `link rel="canonical"`.
 
 Recomendación para `og:image`: **1200×630 px** aprox. (PNG/JPG); si la miniatura no se actualiza en WhatsApp, prueba el depurador de Facebook (Sharing Debugger) para forzar recacheo.
 
