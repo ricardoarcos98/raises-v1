@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fundación Remo — Transformando comunidades desde la esperanza</title>
+<title>Fundación queFluye — Transformando comunidades desde la esperanza</title>
 <meta name="description" content="Organización sin ánimo de lucro en Colombia que apoya comunidades en situación de vulnerabilidad. Conoce nuestro impacto y únete al cambio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -892,6 +892,61 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-style: italic;
 }
 
+/* Aviso kit post-donación */
+.methodology__notice {
+  max-width: 720px;
+  margin: 2.5rem auto 0;
+  padding: 1.35rem 1.5rem;
+  background: rgba(184, 92, 56, 0.07);
+  border: 1px solid rgba(184, 92, 56, 0.2);
+  border-radius: 16px;
+  text-align: left;
+}
+
+.methodology__notice-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.5rem;
+}
+
+.methodology__notice h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--terracotta-deep);
+  margin-bottom: 0.65rem;
+  line-height: 1.25;
+}
+
+.methodology__notice > p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.methodology__notice-hint {
+  margin-top: 0.85rem !important;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(184, 92, 56, 0.15);
+  font-size: 0.88rem !important;
+  color: #666 !important;
+}
+
+.methodology__notice-hint a {
+  color: var(--terracotta);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.methodology__notice-hint a:hover {
+  color: var(--terracotta-deep);
+}
+
 @media (max-width: 768px) {
   .remo-steps {
     grid-template-columns: repeat(2, 1fr);
@@ -1120,6 +1175,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #555;
   font-size: 1.05rem;
   line-height: 1.7;
+}
+
+/* Transparencia — campaña activa (#transparencia-campanas) */
+.campaign-slide__transparency-panel {
+  margin: 0 0 1.15rem;
+  padding: 1.35rem 1.45rem;
+  background: var(--cream);
+  border-radius: 16px;
+  border: 1px solid rgba(184, 92, 56, 0.18);
+}
+
+.campaign-slide__transparency-panel h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--charcoal);
+  margin-bottom: 0.65rem;
+  line-height: 1.25;
+}
+
+.campaign-slide__transparency-panel p {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.campaign-slide__transparency-panel p strong {
+  color: var(--charcoal);
+  font-weight: 600;
 }
 
 /* --- Horizontal scroll track --- */
@@ -1597,6 +1681,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 320px;
 }
 
+.footer__transparency-note {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(250, 243, 232, 0.55);
+  max-width: 320px;
+}
+
+.footer__transparency-note a {
+  color: var(--terracotta-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__transparency-note a:hover {
+  color: var(--cream);
+}
+
 .footer h4 {
   font-family: var(--font-display);
   font-size: 1.05rem;
@@ -1650,6 +1752,46 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+.footer__contact-item a {
+  color: rgba(250, 243, 232, 0.88);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer__contact-item a:hover {
+  color: var(--terracotta-soft);
+}
+
+/* Botón flotante WhatsApp */
+.wa-float {
+  position: fixed;
+  bottom: max(1.35rem, env(safe-area-inset-bottom, 0px));
+  right: max(1.35rem, env(safe-area-inset-right, 0px));
+  z-index: 1001;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 22px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+  color: #fff;
+}
+
+.wa-float svg {
+  width: 30px;
+  height: 30px;
 }
 
 .footer__bottom {
@@ -1730,13 +1872,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     </p>
     <div class="hero__actions">
       <a href="#campanas" class="btn btn--primary">
-        Doná con Remo
+        Donar con Remo
       </a>
       <a href="#metodologia" class="btn btn--ghost">
-        Conocé a Remo
+        Conocer a Remo
       </a>
       <a href="#metodologia" class="btn btn--purple">
-        Postulá tu Remo
+        Postular tu Remo
       </a>
     </div>
   </div>
@@ -1750,12 +1892,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <section class="campaigns" id="campanas">
   <div class="container">
     <div class="campaigns__header">
-      <span class="section-tag reveal">Acompañá a Remo</span>
+      <span class="section-tag reveal">Acompaña a Remo</span>
       <h2 class="reveal reveal-delay-1">
-        Doná con Remo, <em>cambiá una realidad</em>
+        Donar con Remo, <em>cambia una realidad</em>
       </h2>
       <p class="reveal reveal-delay-2">
-        Cada remo es un viaje. Elegí a dónde querés que Remo llegue
+        Cada remo es un viaje. Elige adónde quieres que Remo llegue
         y sé parte del cambio con tu donación.
       </p>
     </div>
@@ -1770,7 +1912,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <img src="img/principal.jpeg" alt="Paisajes cordobeses — Remo #1" class="campaign-slide__img">
               <img src="img/mug.jpeg" alt="Mugs con paisajes cordobeses — Remo #1" class="campaign-slide__img">
               <img src="img/stickers.jpg" alt="Stickers Remo #1" class="campaign-slide__img">
-              <img src="img/remo.jpg" alt="Paisajes cordobeses — Remo #1" class="campaign-slide__img">
+              <img src="img/remo.png" alt="Paisajes cordobeses — Remo #1" class="campaign-slide__img">
             </div>
             <button class="campaign-slide__gallery-arrow campaign-slide__gallery-arrow--left" id="galleryPrev" aria-label="Anterior">
               <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
@@ -1783,8 +1925,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             <span class="campaign-slide__tag campaign-slide__tag--active">Activa</span>
             <h3 class="campaign-slide__title">Remo #1: Corriente Cordobesa</h3>
             <p class="campaign-slide__desc">
-              Incluye: 50 mugs y 50 termos con paisajes cordobeses, diseñados con alma local, 1 hoja de stickers y empaque en caja de cartón. Con cada compra, aportás recursos directos a una escuela rural en Córdoba. Remo lleva el cambio; vos lo hacés posible.
+              Incluye: 50 mugs y 50 termos con paisajes cordobeses, diseñados con alma local, 1 hoja de stickers y empaque en caja de cartón. Con cada compra, aportas recursos directos a una escuela rural en Córdoba. Remo lleva el cambio; tú lo haces posible.
             </p>
+            <!-- Métricas rápidas (50 mugs / 50 termos / 1 escuela) — descomentar si quieres mostrarlas de nuevo
             <div class="campaign-slide__meta">
               <div class="campaign-slide__meta-item">
                 <span class="campaign-slide__meta-value">50</span>
@@ -1799,6 +1942,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                 <span class="campaign-slide__meta-label">Escuela</span>
               </div>
             </div>
+            -->
             <!-- Barra de progreso de la campaña
               El avance solo se edita desde el backend cambiando data-* attributes.
               El backend debe reemplazar los valores de:
@@ -1845,6 +1989,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
                 document.getElementById('progreso-barra').style.width = porcentaje + '%';
               })();
             </script>
+            <div class="campaign-slide__transparency-panel reveal" id="transparencia-campanas" role="region" aria-labelledby="transparencia-campanas-title">
+              <h3 id="transparencia-campanas-title">Transparencia en las campañas</h3>
+              <p>
+                Si una campaña no llega a la meta en la fecha, <strong>lo recaudado se hace llegar igual a la comunidad beneficiaria</strong> (no se desvía a otros fines). Los productos siguen vinculados al territorio; <strong>Fundación queFluye</strong> abre una nueva campaña hasta completar el objetivo.
+              </p>
+            </div>
             <a href="https://fundacion-que-fluye.myshopify.com/collections/all" target="_blank" rel="noopener noreferrer" class="campaign-slide__cta">
               Donar a Remo
               <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l10-7.5L5 0"/></svg>
@@ -1855,7 +2005,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <!-- REMO #2 — PRÓXIMAMENTE -->
         <div class="campaign-slide campaign-slide--upcoming">
           <div class="campaign-slide__gallery">
-            <img src="img/remo.jpg" alt="Próximo Remo" class="campaign-slide__img">
+            <img src="img/remo.png" alt="Próximo Remo" class="campaign-slide__img">
           </div>
           <div class="campaign-slide__info">
             <span class="campaign-slide__tag campaign-slide__tag--soon">Próximamente</span>
@@ -1871,7 +2021,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <!-- REMO #3 — PRÓXIMAMENTE -->
         <div class="campaign-slide campaign-slide--upcoming">
           <div class="campaign-slide__gallery">
-            <img src="img/remo.jpg" alt="Próximo Remo" class="campaign-slide__img">
+            <img src="img/remo.png" alt="Próximo Remo" class="campaign-slide__img">
           </div>
           <div class="campaign-slide__info">
             <span class="campaign-slide__tag campaign-slide__tag--soon">Próximamente</span>
@@ -1902,7 +2052,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <blockquote>
       "Nadie se salva solo. Cada mano que se extiende <em>siembra un futuro</em> donde antes solo había incertidumbre."
     </blockquote>
-    <cite>— Filosofía de Fundación Remo</cite>
+    <cite>— Filosofía de Fundación queFluye</cite>
   </div>
 </section>
 
@@ -1919,7 +2069,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         Nacimos de la convicción de que el <em>cambio es posible</em>
       </h2>
       <p>
-        Fundación Remo es una organización colombiana sin ánimo de lucro que trabaja
+        Fundación queFluye es una organización colombiana sin ánimo de lucro que trabaja
         directamente con comunidades donde la necesidad es urgente y la presencia
         institucional es escasa.
       </p>
@@ -1973,8 +2123,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <div class="remo-step reveal" style="transition-delay: 0.1s;">
         <div class="remo-step__marker">1</div>
-        <h3 class="remo-step__title">Postulá tu Remo</h3>
-        <p class="remo-step__desc">Completás un formulario y un video contándonos tu causa. No se pierde ningún detalle.</p>
+        <h3 class="remo-step__title">Postula tu Remo</h3>
+        <p class="remo-step__desc">Completa un formulario y un video contándonos tu causa. No se pierde ningún detalle.</p>
       </div>
 
       <div class="remo-step reveal" style="transition-delay: 0.2s;">
@@ -1986,7 +2136,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="remo-step reveal" style="transition-delay: 0.3s;">
         <div class="remo-step__marker">3</div>
         <h3 class="remo-step__title">Tu Remo al aire</h3>
-        <p class="remo-step__desc">Te guiamos a montar tu campaña con IA y alianzas estratégicas. Remamos hasta cumplir la meta.</p>
+        <p class="remo-step__desc">Te guiamos con IA y alianzas estratégicas. Remamos juntos hasta la meta; si no se alcanza, el impacto queda con la comunidad y lanzamos otra campaña hasta lograrlo.</p>
       </div>
 
       <div class="remo-step reveal" style="transition-delay: 0.4s;">
@@ -1997,8 +2147,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     </div>
 
+    <div class="methodology__notice reveal" role="region" aria-labelledby="methodology-notice-title">
+      <span class="methodology__notice-label">Cómo seguimos remando juntos</span>
+      <h3 id="methodology-notice-title">Kit para compartir — después de donar</h3>
+      <p>
+        Cuando <strong>completas tu donación</strong> en la tienda, <strong>te enviamos por correo</strong> un kit con <strong>textos e imágenes listos</strong> para que difundas la campaña en redes, WhatsApp o con quien quieras: <strong>difusión orgánica</strong>, con la voz de la fundación. Así sumamos más remeros; no hace falta impulsar solo.
+      </p>
+      <p class="methodology__notice-hint">
+        ¿Ya donaste y no te llegó? <a href="https://wa.me/573128438532?text=Hola%2C%20necesito%20el%20kit%20de%20Fundaci%C3%B3n%20queFluye%20para%20compartir%20la%20campa%C3%B1a" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>.
+      </p>
+    </div>
+
     <div class="methodology__bottom reveal">
-      <p>Cuando donás con Remo, no solo ayudás — <em>remás junto a toda una comunidad.</em></p>
+      <p>Cuando donas con Remo, no solo ayudas — <em>remas junto a toda una comunidad.</em></p>
     </div>
   </div>
 </section>
@@ -2087,7 +2248,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             style="width:100%;height:500px;border:none;border-radius:20px;"
             allow="camera; microphone; autoplay; encrypted-media;"
             loading="lazy"
-            title="Encuesta Fundación Remo"
+            title="Encuesta Fundación queFluye"
           ></iframe>
         </div>
       </div>
@@ -2100,11 +2261,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="#hero" class="nav__logo">Fundación<span> Remo</span></a>
+        <a href="#hero" class="nav__logo">Fundación<span> queFluye</span></a>
         <p>
           Organización sin ánimo de lucro que trabaja junto a comunidades
           colombianas en situación de vulnerabilidad. Cada acción cuenta,
           cada raíz sostiene.
+        </p>
+        <p class="footer__transparency-note">
+          Campañas: si no se completa la meta, los productos siguen con la comunidad y abrimos otra campaña hasta completarla.
+          <a href="#transparencia-campanas">Leer política completa</a>
         </p>
         <div class="footer__social">
           <a href="#" aria-label="Instagram">
@@ -2133,6 +2298,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div>
         <h4>Legal</h4>
         <ul class="footer__links">
+          <li><a href="#transparencia-campanas">Campañas y transparencia</a></li>
           <li><a href="#">Política de privacidad</a></li>
           <li><a href="#">Términos de uso</a></li>
           <li><a href="#">Informe de gestión</a></li>
@@ -2142,12 +2308,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div>
         <h4>Contacto</h4>
         <div class="footer__contact-item">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          contacto@fundacionquefluye.org
-        </div>
-        <div class="footer__contact-item">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +57 (601) 555 2843
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.98a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <a href="https://wa.me/573128438532?text=Hola%2C%20quiero%20contactar%20Fundaci%C3%B3n%20queFluye" target="_blank" rel="noopener noreferrer">WhatsApp +57 312 843 8532</a>
         </div>
         <div class="footer__contact-item">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -2156,11 +2318,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2024 Fundación Remo · Entidad sin ánimo de lucro · NIT 901.XXX.XXX-X</span>
+      <span>© 2024 Fundación queFluye · Entidad sin ánimo de lucro · NIT 901.XXX.XXX-X</span>
       <span>Hecho con ❤️ desde Colombia</span>
     </div>
   </div>
 </footer>
+
+<a href="https://wa.me/573128438532?text=Hola%2C%20quiero%20contactar%20Fundaci%C3%B3n%20queFluye" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp a Fundación queFluye, +57 312 843 8532" title="WhatsApp Fundación queFluye +57 312 843 8532">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.98a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script>
 /* ============================================
